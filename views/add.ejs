@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/dialog.css">
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="nav">
+        <div class="center">注册™</div>
+    </div>
+    <div class="confirm"><i>不可用昵称</i></div>
+    <div class="login">
+        <div class="user">
+            <i></i>
+            <input type="text" name="user" id="user" placeholder="昵称">
+        </div>
+        <div class="avatar_u">
+            <i></i>
+            <input type="text" name="avatar" id="avatar" pic="" value="选择一个头像" readonly="readonly" onclick="login.choose()">
+            <i class="sel"><img src="/images/unlogin.png" alt=""></i>
+        </div>
+        <div class="sex">
+            <i></i>
+            <input class="radio" type="radio" name="sex" id="r1" value="1">
+            <label for="r1" class="radio1"><img src="/images/boy.png"></label>
+            <input class="radio" type="radio" name="sex" id="r2" value="0">
+            <label for="r2" class="radio1"><img src="/images/girl.png"></label>
+        </div>
+        <div class="address">
+            <i></i>
+            <input type="text" name="address" id="address" placeholder="地址">
+        </div>
+        <div class="show">
+            <i></i>
+            <input type="text" name="perShow" id="perShow" placeholder="简介">
+        </div>
+        <div class="pwd">
+            <i></i>
+            <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
+        </div>
+        <div class="button">
+            <input type="button" value="注册" onclick="login.sub()">
+        </div>
+    </div>
+    <div class="tip" style="top:64%">
+        <div class="txt">Hello dears</div>
+        <i class="line"></i>
+        <i class="cat"></i>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/javascripts/login.js"></script>
+<script type="text/javascript">
+    var login = new Login();
+    $(function (){
+        $('#user').blur(function (){
+            var user = $('#user').val();
+            login.register(user);
+        })
+    })
+</script>
+</html>

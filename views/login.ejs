@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/stylesheets/dialog.css">
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="lbg">
+        <div class="nav">
+            <div class="left"><a href="/add" class="user"><img src="/images/login.png"></a></div>
+            <div class="center">登录™</div>
+        </div>
+        <div class="clear"></div>
+        <div class="login">
+            <div class="user">
+                <i></i>
+                <input type="text" name="user" id="user" placeholder="账号">
+            </div>
+            <div class="pwd">
+                <i></i>
+                <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
+            </div>
+            <div class="button">
+                <input type="button" value="登录">
+            </div>
+        </div>
+        <div class="tip">
+            <div class="txt">左上角能注册账号诶</div>
+            <i class="line"></i>
+            <i class="cat"></i>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/javascripts/login.js"></script>
+<script type="text/javascript">
+    $('.button input').click(function (){
+        var u_l = new Login();
+        var u = $('#user').val();
+        var p = $('#pwd').val();
+        if(u == "" || p == ""){
+            u_l.speak('请输入账号或密码!');
+            return false;
+        }
+        u_l.u_login(u, p);
+    })
+
+</script>
+</html>

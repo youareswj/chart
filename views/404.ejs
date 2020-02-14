@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <style type="text/css">
+        body{background: #46c47c}
+        .lost .tip {position: absolute;top:50%}
+        .lost .tip .txt {font-style: normal;color: #fff;position: absolute;width: 52vw;top: 18vw;left: 4vw;letter-spacing: 1vw;transform: rotate(-25deg);font-size: 4.5vw}
+        .lost .tip .line {display:inline-block;width:34vw;height:34vw;background: url("/images/linelost.png") no-repeat;position: absolute;top:25vw;left: 26vw}
+        .lost .tip .cat {display:inline-block;width:36vw;height:34vw;background: url("/images/catlost.png") no-repeat;position: absolute;top:34vw;left: 56vw}
+        .lost .icon i {display:inline-block;width:94vw;height:34vw;background: url("/images/404.png") no-repeat;position: absolute;top:34vw;left: 1vw}
+    </style>
+</head>
+<body>
+<div class="lost">
+    <div class="icon"><i></i></div>
+    <div class="tip">
+        <div class="txt">你输入的地址无效 (((;꒪ꈊ꒪;)))</div>
+        <i class="line"></i>
+        <i class="cat"></i>
+    </div>
+</div>
+</body>
+</html>

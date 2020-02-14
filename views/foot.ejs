@@ -1,0 +1,6 @@
+<div class="bottom">
+    <div class="piece"><a href="/" class="user"><img src="/images/index.png"></a></div>
+    <div class="piece"><a href="/topic" class="user"><img src="/images/topic.png"></a></div>
+    <div class="piece" v-if="logn_state"><a :href="'/user?id='+logn_id" class="user"><img src="/images/person.png"></a></div>
+    <div class="piece" v-if="!logn_state"><a href="javascript:void(0)" class="user" @click="pointOut"><img src="/images/person.png"></a></div>
+</div>

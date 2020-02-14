@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/dialog.css'/>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="nav" v-if="!logn_state">
+        <div class="left"><a href="/login" class="user"><img src="/images/unlogin.png"></a></div>
+        <div class="center">Hello Dears</div>
+        <div class="right"><a class="next" href="javascript:void(0)"><img src="/images/soda.png"></a></div>
+    </div>
+    <div class="nav" v-if="logn_state">
+        <div class="left"><a :href="'/user?id='+logn_id" class="user"><img :src="'/avatar/'+logn_pic"></a></div>
+        <div class="center">Hello Dears</div>
+        <div class="right"><a class="next" href="javascript:void(0)"><img src="/images/soda.png"></a></div>
+    </div>
+    <div class="content">
+        <div class="cont_item" v-if="!tips" v-for="item in think" :thId="item._id">
+            <div class="cont_head">
+                <div class="avatar">
+                    <a :href="'/user?id='+item.userId" class="fl"><img :src="'/avatar/'+item.pic"></a>
+                    <div class="info">
+                        <div class="user" v-text="item.userName"></div>
+                        <div class="other"><span class="time" v-cloak>{{item.thTime|time}}</span><span class="phone"
+                                                                                                       v-text="item.thPhone"></span>
+                        </div>
+                    </div>
+                    <i :class="'bg'+Math.ceil(3*Math.random())"></i>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="cont" v-text="item.thCom"></div>
+            <div class="cont_foot">
+                <a href="javascript:void(0)" :class="[item.type==1?'selAg':'agree']" @click.stop="praise(1,$event)"><i></i></a>
+                <a href="javascript:void(0)" :class="[item.type==2?'selUag':'unagree']"
+                   @click.stop="praise(2,$event)"><i></i></a>
+                <a href="javascript:void(0)" class="comadd" @click.stop="addCom($event,item._id)"><i></i></a>
+            </div>
+            <div class="item_com">
+                <div class="comment">
+
+                </div>
+                <div class="publish">
+                    <div class="add_com">
+                        <input type="text" id="comment"><a href="javascript:void(0)" class="subCom"
+                                                           @click.stop="publish($event,item._id)">发表</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="bot"></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <%include foot.ejs%>
+</div>
+</body>
+<script type="text/javascript" src="/javascripts/vue.min.js"></script>
+<script type="text/javascript" src="/javascripts/user.js"></script>
+<script type="text/javascript">
+    $(function (){
+        var child = $('.content').children().length;
+        console.log(child)
+        if(child > 1){
+            $('.cont').css('font-size', '3.6vw');
+            $('.c_cont').css('font-size', '3.6vw');
+        }
+    })
+    $.user({
+        page:'index'
+    })
+</script>
+</html>

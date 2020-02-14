@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/dialog.css'/>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="nav">
+        <div class="left"><a href="javascript:window.history.go(-1)" class="prev"><img src="/images/prev.png"></a></div>
+        <div class="center">话题</div>
+        <div class="right"><a class="next" href="javascript:void(0)"><img src="/images/discuss.png"></a></div>
+    </div>
+    <div class="tpc">
+        <ul>
+            <li><a href="/tpc?pid=1"><img src="/images/catl.png">
+                    <span class="title">#失眠#</span>
+                </a></li>
+            <li><a href="/tpc?pid=2"><img src="/images/catl.png">
+                    <span class="title">#冰阔落#</span>
+                </a></li>
+            <li><a href="/tpc?pid=3"><img src="/images/catl.png">
+                    <span class="title">#熬夜#</span>
+                </a></li>
+        </ul>
+    </div>
+    <%include foot.ejs%>
+    <script type="text/javascript" src="/javascripts/vue.min.js"></script>
+    <script type="text/javascript" src="/javascripts/user.js"></script>
+    <script type="text/javascript">
+        $.user({})
+    </script>
+</div>
+</body>
+</html>

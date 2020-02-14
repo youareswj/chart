@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/dialog.css'/>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+</head>
+<body>
+<div class="contain">
+    <div class="nav">
+        <div class="left"><a href="javascript:window.history.go(-1)" class="prev"><img src="/images/prev.png"></a></div>
+        <div class="center"><a href="/">Hello Dears</a></div>
+        <div class="right"><a href="/" class="next"><img src="/images/index.png"></a></div>
+    </div>
+    <div class="cur_usr">
+        <i class="logout" @click="logout"></i>
+        <div class="ppic"><img v-if="u_msg.pic" :src="'/avatar/'+u_msg.pic"></div>
+        <div class="username" v-text="u_msg.userName"></div>
+        <div class="perShow" v-text="u_msg.perShow"></div>
+        <div class="tab">
+            <dl>
+                <dd class="on">心情</dd>
+                <dd>个人资料</dd>
+            </dl>
+        </div>
+        <i class="write" @click="edit"></i>
+    </div>
+    <div>
+        <div class="content" tab="0">
+            <div class="cont_item" v-if="!tips" v-for="item in think" :thId="item._id">
+                <div class="cont_head">
+                    <div class="avatar">
+                        <a :href="'/user?id='+item.userId" class="fl"><img :src="'/avatar/'+item.pic"></a>
+                        <div class="info">
+                            <div class="user" v-text="item.userName"></div>
+                            <div class="other"><span class="time" v-cloak>{{item.thTime|time}}</span><span class="phone"
+                                                                                                           v-text="item.thPhone"></span>
+                            </div>
+                        </div>
+                        <i :class="'bg'+Math.ceil(3*Math.random())"></i>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="cont" v-text="item.thCom"></div>
+                <div class="cont_foot">
+                    <a href="javascript:void(0)" :class="[item.type==1?'selAg':'agree']" @click.stop="praise(1,$event)"><i></i></a>
+                    <a href="javascript:void(0)" :class="[item.type==2?'selUag':'unagree']"
+                       @click.stop="praise(2,$event)"><i></i></a>
+                    <a href="javascript:void(0)" class="comadd" @click.stop="addCom($event,item._id)"><i></i></a>
+                    <a href="javascript:void(0)" class="del" @click.stop="delCom($event)"><i></i></a>
+                </div>
+                <div class="item_com">
+                    <div class="comment">
+
+                    </div>
+                    <div class="publish">
+                        <div class="add_com">
+                            <input type="text" id="comment"><a href="javascript:void(0)" class="subCom"
+                                                               @click.stop="publish($event,item._id)">发表</a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="bot"></div>
+                <div class="clear"></div>
+            </div>
+            <div v-if="tips" class="tips"><span v-text="tips"></span></div>
+        </div>
+        <div class="pshow no" tab="1">
+            <div class="p_cont">资料简介</div>
+            <div class="detail">
+                <dl>
+                    <dd><i>ID:</i><span v-text="u_msg.userId"></span></dd>
+                    <dd><i>昵称:</i><span v-text="u_msg.userName"></span></dd>
+                    <dd><i>性别:</i><span v-cloak>{{u_msg.sex|dealsex}}</span></dd>
+                    <dd><i>地址:</i><span v-text="u_msg.address"></span></dd>
+                    <dd><i>简介:</i><span v-text="u_msg.perShow"></span></dd>
+                </dl>
+            </div>
+            <div class="tip" style="top:60%">
+                <div class="txt">Hello dears</div>
+                <i class="line"></i>
+                <i class="cat"></i>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/javascripts/vue.min.js"></script>
+<script type="text/javascript" src="/javascripts/user.js"></script>
+<script type="text/javascript" src="/javascripts/mobile.js"></script>
+<script type="text/javascript">
+    var uid = window.location.href.split('?id=')[1];
+    var md = new MobileDetect(window.navigator.userAgent);
+    var phone = md.mobile();
+    $.user({
+        page:'user',
+        uid: uid,
+        phone: phone,
+        selector: '.tab dd'
+    })
+</script>
+</html>
